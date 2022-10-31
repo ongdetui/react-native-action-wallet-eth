@@ -29,7 +29,7 @@ export function createWallet(network, { mnemonic, privateKey } = {}) {
 }
 
 export function validateNetwork(network) {
-  if (!Object.values(ETH_NETWORKS).includes(network)) {
+  if (!Object.values(NETWORKS).includes(network)) {
     throw "Invalid network";
   }
 }
