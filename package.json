@@ -1,0 +1,30 @@
+{
+  "name": "react-native-action-wallet-eth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ongdetui/react-native-action-wallet-eth.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "action",
+    "wallet",
+    "eth"
+  ],
+  "author": "phamduc-07",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ongdetui/react-native-action-wallet-eth/issues"
+  },
+  "homepage": "https://github.com/ongdetui/react-native-action-wallet-eth#readme",
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "react-native-get-random-values": "^1.8.0"
+  }
+}
