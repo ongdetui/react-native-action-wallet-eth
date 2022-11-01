@@ -172,7 +172,6 @@ export const getTransactionReceipt = async (
   }
 };
 
-
 export const getGasPrice = async (network: string): Promise<any> => {
   try {
     const data = await axios.get(`https://api-${network}.etherscan.io/api`, {
@@ -185,4 +184,18 @@ export const getGasPrice = async (network: string): Promise<any> => {
   } catch (error) {
     return error;
   }
+};
+
+export default {
+  getBalance,
+  getGasPrice,
+  getTransaction,
+  getTransactionReceipt,
+  getHistory,
+  validateWallet,
+  validateAddress,
+  validateMnemonic,
+  validateNetwork,
+  validatePrivateKey,
+  createWallet,
 };

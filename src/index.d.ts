@@ -1,5 +1,5 @@
 export function createWallet(
-  network: "homestead" | "rinkeby",
+  network: "homestead" | "rinkeby" | string,
   { mnemonic, privateKey }: { mnemonic?: string; privateKey?: string }
 ): any;
 
