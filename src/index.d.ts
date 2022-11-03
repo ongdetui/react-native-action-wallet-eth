@@ -6,10 +6,10 @@ export function createWallet(
 export function validateNetwork(
   network: "homestead" | "rinkeby",
   listNetwork?: string[]
-): string | void;
-export function validateAddress(address: string): string | void;
-export function validateMnemonic(mnemonic: string): string | void;
-export function validatePrivateKey(privateKey: string): string | void;
+): boolean;
+export function validateAddress(address: string): boolean;
+export function validateMnemonic(mnemonic: string): boolean;
+export function validatePrivateKey(privateKey: string): boolean;
 
 export interface ResponseBalance {
   status: string;

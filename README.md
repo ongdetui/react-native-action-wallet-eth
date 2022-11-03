@@ -6,7 +6,7 @@
 - [Create Wallet](#create-wallet)
 - [getHistory](#gethistory)
 - [getBalance](#getbalance)
-- Props
+- More
   - getGasPrice
   - getTransaction
   - getTransactionReceipt

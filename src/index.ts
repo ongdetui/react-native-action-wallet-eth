@@ -7,7 +7,7 @@ export const NETWORKS = {
   testnet: "rinkeby",
 };
 
-export function createWallet(
+export const createWallet = async (
   network: string,
   {
     mnemonic,
@@ -16,58 +16,69 @@ export function createWallet(
     mnemonic?: string;
     privateKey?: string;
   } = {}
-) {
-  validateNetwork(network);
+) => {
+  try {
+    let wallet;
 
-  let wallet;
+    if (privateKey) {
+      const pk = privateKey.startsWith("0x") ? privateKey : "0x" + privateKey;
 
-  if (privateKey) {
-    const pk = privateKey.startsWith("0x") ? privateKey : "0x" + privateKey;
+      if (!validatePrivateKey(pk)) {
+        throw "Invalid private key";
+      }
 
-    validatePrivateKey(pk);
+      wallet = new ethers.Wallet(pk);
+    } else if (mnemonic) {
+      if (!validateMnemonic(mnemonic)) {
+        throw "Invalid mnemonic";
+      }
 
-    wallet = new ethers.Wallet(pk);
-  } else if (mnemonic) {
-    validateMnemonic(mnemonic);
+      wallet = await ethers.Wallet.fromMnemonic(mnemonic);
+    } else {
+      wallet = await ethers.Wallet.createRandom();
+    }
 
-    wallet = ethers.Wallet.fromMnemonic(mnemonic);
-  } else {
-    wallet = ethers.Wallet.createRandom();
+    return await wallet.connect(ethers.getDefaultProvider(network));
+  } catch (error) {
+    return typeof error === "string" ? Error(error) : error;
   }
+};
 
-  return wallet.connect(ethers.getDefaultProvider(network));
-}
-
-export function validateNetwork(network, listNetwork?: string[]) {
+export function validateNetwork(network: string, listNetwork?: string[]) {
   if (!Object.values(listNetwork ? listNetwork : NETWORKS).includes(network)) {
-    throw "Invalid network";
+    return false;
   }
+  return true;
 }
 
-export function validateAddress(address) {
+export function validateAddress(address: string) {
   try {
     ethers.utils.getAddress(address);
+    return true;
   } catch (e) {
-    throw "Invalid address";
+    return false;
   }
 }
 
-function validateMnemonic(mnemonic) {
+function validateMnemonic(mnemonic: string) {
   if (!ethers.utils.isValidMnemonic(mnemonic)) {
-    throw "Invalid mnemonic";
+    return false;
   }
+  return true;
 }
 
-export function validatePrivateKey(privateKey) {
+export function validatePrivateKey(privateKey: string) {
   if (!privateKey.match(/^0x[0-9A-fa-f]{64}$/)) {
-    throw "Invalid privateKey";
+    return false;
   }
+  return true;
 }
 
 export function validateWallet(wallet) {
   if (!wallet || !wallet.provider) {
-    throw "Invalid wallet";
+    return false;
   }
+  return true;
 }
 
 interface ResponseBalance {
