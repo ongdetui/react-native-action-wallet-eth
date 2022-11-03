@@ -41,10 +41,14 @@ yarn add react-native-action-wallet-eth
 ```sh
  import {createWallet} from 'react-native-action-wallet-eth'
 
- function createWallet(
-    network: "homestead" | "rinkeby" | string,
-    { mnemonic, privateKey }: { mnemonic?: string; privateKey?: string }
- ): any;
+ // Create new wallet
+ await createWallet('rinkeby');
+
+ // Import privateKey
+ await createWallet('rinkeby', {privateKey: 'privateKey your'});
+
+ // Re-store wallet
+ await createWallet('rinkeby', {mnemonic: 'mnemonic your'});
 ```
 
 ## getHistory
