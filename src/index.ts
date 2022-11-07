@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ethers } from "ethers";
 import "react-native-get-random-values";
+import "@ethersproject/shims";
 
 export const NETWORKS = {
   mainnet: "homestead",

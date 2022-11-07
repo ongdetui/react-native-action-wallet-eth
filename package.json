@@ -27,8 +27,9 @@
   },
   "homepage": "https://github.com/ongdetui/react-native-action-wallet-eth#readme",
   "dependencies": {
+    "@ethersproject/shims": "^5.7.0",
+    "axios": "^0.27.2",
     "ethers": "^5.7.2",
-    "react-native-get-random-values": "^1.8.0",
-    "axios": "^0.27.2"
+    "react-native-get-random-values": "^1.8.0"
   }
 }
