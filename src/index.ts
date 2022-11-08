@@ -1,7 +1,7 @@
+import "@ethersproject/shims";
 import axios from "axios";
 import { ethers } from "ethers";
 import "react-native-get-random-values";
-import "@ethersproject/shims";
 
 export const NETWORKS = {
   mainnet: "homestead",
@@ -41,7 +41,7 @@ export const createWallet = async (
 
     return await wallet.connect(ethers.getDefaultProvider(network));
   } catch (error) {
-    return typeof error === "string" ? Error(error) : error;
+    return {message: error, success: false, data: null};
   }
 };
 
