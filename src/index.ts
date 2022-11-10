@@ -1,6 +1,7 @@
 import "@ethersproject/shims";
 import axios from "axios";
 import { ethers } from "ethers";
+import Config from 'react-native-config';
 import "react-native-get-random-values";
 
 export const NETWORKS = {
@@ -111,6 +112,7 @@ export const getBalance = async (
         address: address,
         action: "balance",
         tag: "latest",
+        apikey: Config.API_KEY,
       },
     });
     return data.data;
@@ -141,6 +143,7 @@ export const getHistory = async (
         startblock: option.startblock ? option.startblock : 0,
         endblock: option.endblock ? option.endblock : 99999999,
         sort: option.sort ? option.sort : "asc",
+        apikey: Config.API_KEY,
       },
     });
     return data.data;
@@ -159,6 +162,7 @@ export const getTransaction = async (
         module: "proxy",
         action: "eth_getTransactionByHash",
         txhash: transactionHash,
+        apikey: Config.API_KEY,
       },
     });
     return data.data;
@@ -176,6 +180,7 @@ export const getTransactionReceipt = async (
         module: "proxy",
         action: "eth_getTransactionReceipt",
         txhash: transactionHash,
+        apikey: Config.API_KEY,
       },
     });
     return data.data;
@@ -190,6 +195,7 @@ export const getGasPrice = async (network: string): Promise<any> => {
       params: {
         module: "proxy",
         action: "eth_gasPrice",
+        apikey: Config.API_KEY,
       },
     });
     return data.data;
