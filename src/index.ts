@@ -40,7 +40,9 @@ export const createWallet = async (
       wallet = await ethers.Wallet.createRandom();
     }
 
-    return await wallet.connect(ethers.getDefaultProvider(network));
+    return await wallet.connect(ethers.getDefaultProvider(network, {
+      etherscan: Config.API_KEY,
+    }));
   } catch (error) {
     return {message: error, success: false, data: null};
   }
