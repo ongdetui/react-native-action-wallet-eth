@@ -108,7 +108,9 @@ export const getBalance = async (
   address: string
 ): Promise<ResponseBalance> => {
   try {
-    const data = await axios.get(`https://api-${network}.etherscan.io/api`, {
+    const data = await axios.get(network === NETWORKS.mainnet ?
+      'https://api.etherscan.io/api' : 
+      `https://api-${network}.etherscan.io/api`, {
       params: {
         module: "account",
         address: address,
